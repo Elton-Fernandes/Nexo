@@ -37,8 +37,8 @@ CREATE TABLE Cliente
 (
     id_cliente SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    cpf VARCHAR(11) UNIQUE NOT NULL,
-    telefone VARCHAR(13) NOT NULL
+    cpf VARCHAR(11) UNIQUE,
+    telefone VARCHAR(13)
 );
 
 CREATE TABLE fornece
@@ -51,13 +51,14 @@ CREATE TABLE fornece
 
 CREATE TABLE Item_Venda
 (
-    id_venda INT,
-    id_produto INT,
+    id_item_venda SERIAL PRIMARY KEY,
+    id_venda INT NOT NULL,
+    id_produto INT NOT NULL,
     preco_unitario NUMERIC(10, 2) NOT NULL,
     subtotal NUMERIC(10, 2) NOT NULL,
     desconto NUMERIC(10, 2) NOT NULL,
     quantidade INT NOT NULL,
-    PRIMARY KEY(id_venda, id_produto)
+    UNIQUE(id_venda, id_produto)
 );
 
 ALTER TABLE Produto ADD FOREIGN KEY(id_categoria) REFERENCES Categoria (id_categoria);
