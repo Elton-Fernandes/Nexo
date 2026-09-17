@@ -30,7 +30,7 @@ CREATE TABLE Venda
 (
     id_venda SERIAL PRIMARY KEY,
     id_cliente INT,
-    data_venda DATE NOT NULL
+    data_venda TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Cliente
