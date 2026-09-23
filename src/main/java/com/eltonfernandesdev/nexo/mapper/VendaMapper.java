@@ -5,12 +5,16 @@ import com.eltonfernandesdev.nexo.dto.VendaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.VendaResponseDTO;
 import com.eltonfernandesdev.nexo.model.ItemVenda;
 import com.eltonfernandesdev.nexo.model.Venda;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class VendaMapper {
+
+    private ItemVendaMapper itemVendaMapper;
 
    public VendaResponseDTO toResponseDTO(Venda venda) {
 
@@ -22,7 +26,7 @@ public class VendaMapper {
 
        List<ItemVendaResponseDTO> itens = venda.getItens()
                .stream()
-               .map(this::itemVendaToResponseDTO)
+               .map(itemVendaMapper::itemVendaResponseDTO)
                .toList();
 
        dto.setItens(itens);
@@ -30,17 +34,4 @@ public class VendaMapper {
        return dto;
    }
 
-    private ItemVendaResponseDTO itemVendaToResponseDTO(ItemVenda item) {
-
-        ItemVendaResponseDTO dto = new ItemVendaResponseDTO();
-
-        dto.setDesconto(item.getDesconto());
-        dto.setPrecoUnitario(item.getPrecoUnitario());
-        dto.setSubtotal(item.getSubtotal());
-        dto.setQuantidade(item.getQuantidade());
-        dto.setIdVenda(item.getVenda().getIdVenda());
-        dto.setIdProduto(item.getProduto().getIdProduto());
-
-        return dto;
-    }
 }
