@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VendaMapper {
 
-    private ItemVendaMapper itemVendaMapper;
+    private final ItemVendaMapper itemVendaMapper;
 
    public VendaResponseDTO toResponseDTO(Venda venda) {
 
