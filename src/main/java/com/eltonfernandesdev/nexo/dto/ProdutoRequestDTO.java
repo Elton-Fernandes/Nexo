@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -40,7 +41,7 @@ public class ProdutoRequestDTO {
     private Long idCategoria;
 
     @Positive
-    private List<Long> fornecedores;
+    private List<Long> fornecedores = new ArrayList<>();
 
     public String getNome() {
         return nome;
