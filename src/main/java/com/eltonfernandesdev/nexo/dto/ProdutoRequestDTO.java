@@ -40,8 +40,7 @@ public class ProdutoRequestDTO {
     @Positive
     private Long idCategoria;
 
-    @Positive
-    private List<Long> fornecedores = new ArrayList<>();
+    private List<@Positive Long> fornecedores = new ArrayList<>();
 
     public String getNome() {
         return nome;
