@@ -13,7 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -64,7 +66,7 @@ public class ProdutoService {
                 .stream()
                 .map(id -> fornecedorRepository.findById(id)
                         .orElseThrow(()->new RuntimeException("Fornecedor com ID" + id + "não existe")))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
 
         produto.setNome(dto.getNome());
         produto.setDescricao(dto.getDescricao());

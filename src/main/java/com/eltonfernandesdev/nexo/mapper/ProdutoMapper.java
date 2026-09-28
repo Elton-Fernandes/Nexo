@@ -33,6 +33,8 @@ public class ProdutoMapper {
         dto.setDescricao(produto.getDescricao());
         dto.setPrecoCusto(produto.getPrecoCusto());
         dto.setPrecoVenda(produto.getPrecoVenda());
+        dto.setEstoque(produto.getEstoque());
+        dto.setEstoqueMinimo(produto.getEstoqueMinimo());
         dto.setAtivo(produto.isAtivo());
         dto.setIdCategoria(produto.getCategoria().getIdCategoria());
         dto.setFornecedores(produto.getFornecedores()
