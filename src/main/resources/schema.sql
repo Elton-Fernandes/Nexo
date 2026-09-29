@@ -30,7 +30,9 @@ CREATE TABLE Venda
 (
     id_venda SERIAL PRIMARY KEY,
     id_cliente INT,
-    data_venda TIMESTAMP NOT NULL
+    data_venda TIMESTAMP NOT NULL,
+    desconto NUMERIC(10, 2) NOT NULL,
+    total NUMERIC(10, 2) NOT NULL
 );
 
 CREATE TABLE Cliente
@@ -56,7 +58,6 @@ CREATE TABLE Item_Venda
     id_produto INT NOT NULL,
     preco_unitario NUMERIC(10, 2) NOT NULL,
     subtotal NUMERIC(10, 2) NOT NULL,
-    desconto NUMERIC(10, 2) NOT NULL,
     quantidade INT NOT NULL,
     UNIQUE(id_venda, id_produto)
 );
