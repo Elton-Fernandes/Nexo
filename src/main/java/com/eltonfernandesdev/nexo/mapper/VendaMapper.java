@@ -16,6 +16,14 @@ public class VendaMapper {
 
     private final ItemVendaMapper itemVendaMapper;
 
+   public Venda toEntity(VendaRequestDTO dto) {
+
+       Venda venda = new Venda();
+
+       venda.setDesconto(dto.getDesconto());
+       return venda;
+   }
+
    public VendaResponseDTO toResponseDTO(Venda venda) {
 
        VendaResponseDTO dto = new VendaResponseDTO();
