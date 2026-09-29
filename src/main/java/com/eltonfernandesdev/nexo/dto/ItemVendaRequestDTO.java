@@ -9,9 +9,6 @@ import java.math.BigDecimal;
 @Component
 public class ItemVendaRequestDTO {
 
-    @NotNull(message = "O desconto é obrigatório")
-    @Positive(message = "O desconto não pode ser negativo")
-    private BigDecimal desconto;
 
     @NotNull(message = "A quantidade é obrigatório")
     @Positive(message = "A quantidade não pode ser negativa")
@@ -20,18 +17,7 @@ public class ItemVendaRequestDTO {
     @NotNull
     @Positive
     private Long idProduto;
-
-    @NotNull
-    @Positive
-    private Long idVenda;
-
-    public BigDecimal getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(BigDecimal desconto) {
-        this.desconto = desconto;
-    }
+    
 
     public int getQuantidade() {
         return quantidade;
@@ -49,11 +35,5 @@ public class ItemVendaRequestDTO {
         this.idProduto = idProduto;
     }
 
-    public Long getIdVenda() {
-        return idVenda;
-    }
 
-    public void setIdVenda(Long idVenda) {
-        this.idVenda = idVenda;
-    }
 }

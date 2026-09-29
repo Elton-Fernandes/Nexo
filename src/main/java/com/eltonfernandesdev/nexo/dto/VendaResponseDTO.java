@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.dto;
 
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class VendaResponseDTO {
     private Long idVenda;
     private Long idCliente;
     private LocalDateTime dataVenda;
+    private BigDecimal desconto;
+    private BigDecimal total;
     private List<ItemVendaResponseDTO> itens;
 
     public Long getIdVenda() {
@@ -43,5 +46,21 @@ public class VendaResponseDTO {
 
     public void setItens(List<ItemVendaResponseDTO> itens) {
         this.itens = itens;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public BigDecimal getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = desconto;
     }
 }

@@ -16,9 +16,6 @@ public class ItemVenda {
     @Column(name = "preco_unitario", nullable = false)
     private BigDecimal precoUnitario;
 
-    @Column(name = "desconto", nullable = false)
-    private BigDecimal desconto;
-
     @Column(name = "subtotal", nullable = false)
     private BigDecimal subtotal;
 
@@ -47,14 +44,6 @@ public class ItemVenda {
 
     public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
-    }
-
-    public BigDecimal getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(BigDecimal desconto) {
-        this.desconto = desconto;
     }
 
     public BigDecimal getSubtotal() {

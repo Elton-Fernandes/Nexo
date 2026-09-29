@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,6 +17,12 @@ public class Venda {
 
     @Column(name = "data_venda", nullable = false)
     private LocalDateTime dataVenda;
+
+    @Column(name = "desconto", nullable = false)
+    private BigDecimal desconto;
+
+    @Column(name = "total", nullable = false)
+    private BigDecimal total;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -46,6 +53,22 @@ public class Venda {
 
     public void setDataVenda(LocalDateTime dataVenda) {
         this.dataVenda = dataVenda;
+    }
+
+    public BigDecimal getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = desconto;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public Long getIdVenda() {

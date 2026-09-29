@@ -7,20 +7,12 @@ import java.math.BigDecimal;
 @Component
 public class ItemVendaResponseDTO {
 
-    private BigDecimal desconto;
     private BigDecimal precoUnitario;
     private BigDecimal subtotal;
     private int quantidade;
     private Long idVenda;
     private Long idProduto;
 
-    public BigDecimal getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(BigDecimal desconto) {
-        this.desconto = desconto;
-    }
 
     public BigDecimal getPrecoUnitario() {
         return precoUnitario;

@@ -12,7 +12,6 @@ public class ItemVendaMapper {
 
         ItemVenda itemVenda = new ItemVenda();
 
-        itemVenda.setDesconto(dto.getDesconto());
         itemVenda.setQuantidade(dto.getQuantidade());
 
         return itemVenda;
@@ -22,7 +21,6 @@ public class ItemVendaMapper {
 
         ItemVendaResponseDTO dto = new ItemVendaResponseDTO();
 
-        dto.setDesconto(itemVenda.getDesconto());
         dto.setPrecoUnitario(itemVenda.getPrecoUnitario());
         dto.setSubtotal(itemVenda.getSubtotal());
         dto.setQuantidade(itemVenda.getQuantidade());

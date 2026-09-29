@@ -23,6 +23,8 @@ public class VendaMapper {
        dto.setIdVenda(venda.getIdVenda());
        dto.setDataVenda(venda.getDataVenda());
        dto.setIdCliente(venda.getCliente().getIdCliente());
+       dto.setDesconto(venda.getDesconto());
+       dto.setTotal(venda.getTotal());
 
        List<ItemVendaResponseDTO> itens = venda.getItens()
                .stream()
