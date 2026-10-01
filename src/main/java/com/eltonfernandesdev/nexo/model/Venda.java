@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -28,8 +29,8 @@ public class Venda {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "venda")
-    private List<ItemVenda> itens;
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemVenda> itens = new ArrayList<>();
 
     public List<ItemVenda> getItens() {
         return itens;

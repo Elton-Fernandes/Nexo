@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -15,11 +16,10 @@ public class VendaRequestDTO {
     private Long idCliente;
 
     @NotNull(message = "Não pode ter venda sem item")
-    @Positive
     private List<ItemVendaRequestDTO> itens;
 
     @NotNull(message = "O desconto é obrigatório")
-    @Positive(message = "O desconto não pode ser negativo")
+    @PositiveOrZero(message = "O desconto não pode ser negativo")
     private BigDecimal desconto;
 
     public Long getIdCliente() {
