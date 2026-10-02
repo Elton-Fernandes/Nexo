@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.CategoriaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.CategoriaResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.CategoriaMapper;
 import com.eltonfernandesdev.nexo.model.Categoria;
 import com.eltonfernandesdev.nexo.repository.CategoriaRepository;
@@ -35,7 +36,7 @@ public class CategoriaService {
 
     public CategoriaResponseDTO alterById(Long idCategoria, CategoriaRequestDTO dto) {
         Categoria categoria = categoriaRepository.findById(idCategoria)
-                .orElseThrow(() -> new RuntimeException("Categoria inexistente"));
+                .orElseThrow(() -> new ResourceNotFoundException("Categoria inexistente"));
 
         categoria.setNome(dto.getNome());
 

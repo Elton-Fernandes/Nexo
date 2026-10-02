@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.ProdutoRequestDTO;
 import com.eltonfernandesdev.nexo.dto.ProdutoResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.ProdutoMapper;
 import com.eltonfernandesdev.nexo.model.Categoria;
 import com.eltonfernandesdev.nexo.model.Fornecedor;
@@ -29,12 +30,12 @@ public class ProdutoService {
     public ProdutoResponseDTO save(ProdutoRequestDTO dto) {
 
         Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
-                .orElseThrow(()-> new RuntimeException("Essa categoria não existe"));
+                .orElseThrow(()-> new ResourceNotFoundException("Essa categoria não existe"));
 
         List<Fornecedor> fornecedores = dto.getFornecedores()
                 .stream()
                 .map(id -> fornecedorRepository.findById(id)
-                        .orElseThrow(()->new RuntimeException("Fornecedor com ID" + id + "não existe")))
+                        .orElseThrow(()->new ResourceNotFoundException("Fornecedor com ID" + id + "não existe")))
                 .toList();
 
         Produto produto = produtoMapper.toEntity(dto);
@@ -57,15 +58,15 @@ public class ProdutoService {
     public ProdutoResponseDTO alterById(Long idProduto, ProdutoRequestDTO dto){
 
         Produto produto = produtoRepository.findById(idProduto)
-                .orElseThrow(()-> new RuntimeException("Produto inexistente"));
+                .orElseThrow(()-> new ResourceNotFoundException("Produto inexistente"));
 
         Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
-                .orElseThrow(()-> new RuntimeException("Essa categoria não existe"));
+                .orElseThrow(()-> new ResourceNotFoundException("Essa categoria não existe"));
 
         List<Fornecedor> fornecedores = dto.getFornecedores()
                 .stream()
                 .map(id -> fornecedorRepository.findById(id)
-                        .orElseThrow(()->new RuntimeException("Fornecedor com ID" + id + "não existe")))
+                        .orElseThrow(()->new ResourceNotFoundException("Fornecedor com ID" + id + "não existe")))
                 .collect(Collectors.toCollection(ArrayList::new));
 
         produto.setNome(dto.getNome());

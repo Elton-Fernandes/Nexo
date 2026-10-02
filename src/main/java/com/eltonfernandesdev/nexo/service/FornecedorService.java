@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.FornecedorRequestDTO;
 import com.eltonfernandesdev.nexo.dto.FornecedorResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.FornecedorMapper;
 import com.eltonfernandesdev.nexo.model.Fornecedor;
 import com.eltonfernandesdev.nexo.repository.FornecedorRepository;
@@ -36,7 +37,7 @@ public class FornecedorService {
     public FornecedorResponseDTO alterById(Long idFornecedor, FornecedorRequestDTO dto) {
 
         Fornecedor fornecedor = fornecedorRepository.findById(idFornecedor)
-                .orElseThrow(()-> new RuntimeException("Esse fornecedor não existe"));
+                .orElseThrow(()-> new ResourceNotFoundException("Esse fornecedor não existe"));
 
         fornecedor.setNome(dto.getNome());
         fornecedor.setEmail(dto.getEmail());

@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.ClienteRequestDTO;
 import com.eltonfernandesdev.nexo.dto.ClienteResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.ClienteMapper;
 import com.eltonfernandesdev.nexo.model.Cliente;
 import com.eltonfernandesdev.nexo.repository.ClienteRepository;
@@ -34,7 +35,7 @@ public class ClienteService {
 
     public ClienteResponseDTO alterById(Long idCliente, ClienteRequestDTO dto) {
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(()-> new RuntimeException("Esse cliente não existe"));
+                .orElseThrow(()-> new ResourceNotFoundException("Esse cliente não existe"));
 
         cliente.setNome(dto.getNome());
         cliente.setCpf(dto.getCpf());

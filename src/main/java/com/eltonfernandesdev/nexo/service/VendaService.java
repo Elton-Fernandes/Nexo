@@ -3,6 +3,7 @@ package com.eltonfernandesdev.nexo.service;
 import com.eltonfernandesdev.nexo.dto.ItemVendaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.VendaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.VendaResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.ItemVendaMapper;
 import com.eltonfernandesdev.nexo.mapper.VendaMapper;
 import com.eltonfernandesdev.nexo.model.Cliente;
@@ -40,7 +41,7 @@ public class VendaService {
         venda.setDataVenda(LocalDateTime.now());
 
         Cliente cliente = clienteRepository.findById(dto.getIdCliente())
-                .orElseThrow(()-> new RuntimeException("Esse cliente não existe"));
+                .orElseThrow(()-> new ResourceNotFoundException("Esse cliente não existe"));
 
         venda.setCliente(cliente);
 
@@ -49,7 +50,7 @@ public class VendaService {
         for (ItemVendaRequestDTO itemDTO : dto.getItens()) {
 
             Produto produto = produtoRepository.findById(itemDTO.getIdProduto())
-                    .orElseThrow(()-> new RuntimeException("Esse produto não existe"));
+                    .orElseThrow(()-> new ResourceNotFoundException("Esse produto não existe"));
 
             ItemVenda item = new ItemVenda();
 
