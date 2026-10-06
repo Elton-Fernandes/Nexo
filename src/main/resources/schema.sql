@@ -1,7 +1,7 @@
 CREATE TABLE Categoria
 (
     id_categoria SERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL
+    nome VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE Produto
