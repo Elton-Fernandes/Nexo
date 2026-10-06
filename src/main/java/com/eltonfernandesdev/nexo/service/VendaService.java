@@ -3,6 +3,7 @@ package com.eltonfernandesdev.nexo.service;
 import com.eltonfernandesdev.nexo.dto.ItemVendaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.VendaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.VendaResponseDTO;
+import com.eltonfernandesdev.nexo.exception.BusinessException;
 import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.ItemVendaMapper;
 import com.eltonfernandesdev.nexo.mapper.VendaMapper;
@@ -34,6 +35,7 @@ public class VendaService {
     private final ClienteRepository clienteRepository;
     private final ProdutoRepository produtoRepository;
 
+    @Transactional
     public VendaResponseDTO save(VendaRequestDTO dto) {
 
         Venda venda = vendaMapper.toEntity(dto);
@@ -52,6 +54,10 @@ public class VendaService {
             Produto produto = produtoRepository.findById(itemDTO.getIdProduto())
                     .orElseThrow(()-> new ResourceNotFoundException("Esse produto não existe"));
 
+            if (produto.getEstoque() < itemDTO.getQuantidade()) {
+                throw new BusinessException("Estoque insuficiente");
+            }
+
             ItemVenda item = new ItemVenda();
 
             item.setVenda(venda);
@@ -65,6 +71,9 @@ public class VendaService {
             item.setSubtotal(subtotal);
 
             itensVenda.add(item);
+
+            int novoEstoque = produto.getEstoque() - item.getQuantidade();
+            produto.setEstoque(novoEstoque);
         }
 
         venda.setItens(itensVenda);
