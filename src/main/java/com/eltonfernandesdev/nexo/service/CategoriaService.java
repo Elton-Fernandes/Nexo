@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.CategoriaRequestDTO;
 import com.eltonfernandesdev.nexo.dto.CategoriaResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceDuplicatedException;
 import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.CategoriaMapper;
 import com.eltonfernandesdev.nexo.model.Categoria;
@@ -21,6 +22,11 @@ public class CategoriaService {
     public CategoriaResponseDTO save(CategoriaRequestDTO dto) {
 
         Categoria categoria = categoriaMapper.toEntity(dto);
+
+
+        if(categoriaRepository.findByNome(categoria.getNome()).isPresent()) {
+            throw new ResourceDuplicatedException("Essa categoria já possui cadastro");
+        }
 
         Categoria categoriaSalva = categoriaRepository.save(categoria);
         return categoriaMapper.toResponseDTO(categoriaSalva);
