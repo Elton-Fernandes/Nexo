@@ -24,8 +24,8 @@ public class ItemVendaMapper {
         dto.setPrecoUnitario(itemVenda.getPrecoUnitario());
         dto.setSubtotal(itemVenda.getSubtotal());
         dto.setQuantidade(itemVenda.getQuantidade());
-        dto.setIdVenda(itemVenda.getIdItemVenda());
-        dto.setIdProduto(itemVenda.getIdItemVenda());
+        dto.setIdVenda(itemVenda.getVenda().getIdVenda());
+        dto.setIdProduto(itemVenda.getProduto().getIdProduto());
 
         return dto;
     }
