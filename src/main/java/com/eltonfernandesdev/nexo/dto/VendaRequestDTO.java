@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Component
+@Schema(name = "Venda Request")
 public class VendaRequestDTO {
 
     @NotNull(message = "O Cliente é obrigatório")

@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
+@Schema(name = "Venda Response")
 public class VendaResponseDTO {
 
     private Long idVenda;

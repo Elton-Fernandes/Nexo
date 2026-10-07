@@ -1,12 +1,14 @@
 package com.eltonfernandesdev.nexo.dto;
 
 import com.eltonfernandesdev.nexo.model.Categoria;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Component
+@Schema(name = "Produto Response")
 public class ProdutoResponseDTO {
 
     private Long idProduto;

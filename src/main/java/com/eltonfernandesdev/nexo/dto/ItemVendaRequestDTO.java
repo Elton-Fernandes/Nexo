@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
+@Schema(name = "ItemVenda Request")
 public class ItemVendaRequestDTO {
 
 

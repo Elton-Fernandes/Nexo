@@ -1,11 +1,13 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.stereotype.Component;
 
 @Component
+@Schema(name = "Cliente Request")
 public class ClienteRequestDTO {
 
     @NotBlank(message = "O nome é obrigatório")

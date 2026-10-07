@@ -1,10 +1,12 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 @Component
+@Schema(name = "ItemVenda Response")
 public class ItemVendaResponseDTO {
 
     private BigDecimal precoUnitario;

@@ -1,8 +1,10 @@
 package com.eltonfernandesdev.nexo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 @Component
+@Schema(name = "Fornecedor Response")
 public class FornecedorResponseDTO {
 
     private Long idFornecedor;
