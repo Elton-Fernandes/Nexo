@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.ClienteRequestDTO;
 import com.eltonfernandesdev.nexo.dto.ClienteResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceDuplicatedException;
 import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.ClienteMapper;
 import com.eltonfernandesdev.nexo.model.Cliente;
@@ -20,6 +21,12 @@ public class ClienteService {
 
     public ClienteResponseDTO save(ClienteRequestDTO dto) {
         Cliente cliente = clienteMapper.toEntity(dto);
+
+        if (cliente.getCpf() != null &&
+                !cliente.getCpf().isBlank() &&
+                clienteRepository.findByCpf(cliente.getCpf()).isPresent()) {
+            throw new ResourceDuplicatedException("Esse CPF já foi cadastrado");
+        }
 
         Cliente clienteSalvo = clienteRepository.save(cliente);
         return clienteMapper.toResponseDTO(clienteSalvo);
