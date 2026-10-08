@@ -3,5 +3,8 @@ package com.eltonfernandesdev.nexo.repository;
 import com.eltonfernandesdev.nexo.model.Fornecedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
+    Optional<Fornecedor> findByCnpj(String cnpj);
 }

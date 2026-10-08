@@ -2,6 +2,7 @@ package com.eltonfernandesdev.nexo.service;
 
 import com.eltonfernandesdev.nexo.dto.FornecedorRequestDTO;
 import com.eltonfernandesdev.nexo.dto.FornecedorResponseDTO;
+import com.eltonfernandesdev.nexo.exception.ResourceDuplicatedException;
 import com.eltonfernandesdev.nexo.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.nexo.mapper.FornecedorMapper;
 import com.eltonfernandesdev.nexo.model.Fornecedor;
@@ -21,6 +22,12 @@ public class FornecedorService {
     public FornecedorResponseDTO save(FornecedorRequestDTO dto) {
 
         Fornecedor fornecedor = fornecedorMapper.toEntity(dto);
+
+        if (fornecedor.getCnpj() != null &&
+                !fornecedor.getCnpj().isBlank() &&
+                fornecedorRepository.findByCnpj(fornecedor.getCnpj()).isPresent()) {
+            throw new ResourceDuplicatedException("Esse CNPJ já foi cadastrado");
+        }
 
         Fornecedor fornecedorSalvo = fornecedorRepository.save(fornecedor);
         return fornecedorMapper.toResponseDTO(fornecedorSalvo);
