@@ -34,7 +34,7 @@ public class ProdutoRequestDTO {
 
     @NotNull(message = "O estoque mínimo é obrigatório")
     @Positive
-    private int estoqueMinimo;
+    private BigDecimal estoqueMinimo;
 
     @NotNull(message = "O status do produto é obrigatório")
     private boolean ativo;
@@ -84,11 +84,11 @@ public class ProdutoRequestDTO {
         this.estoque = estoque;
     }
 
-    public int getEstoqueMinimo() {
+    public BigDecimal getEstoqueMinimo() {
         return estoqueMinimo;
     }
 
-    public void setEstoqueMinimo(int estoqueMinimo) {
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
     }
 

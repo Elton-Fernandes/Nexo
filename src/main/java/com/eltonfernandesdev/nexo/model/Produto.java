@@ -31,7 +31,7 @@ public class Produto {
     private BigDecimal estoque;
 
     @Column(name = "estoque_minimo", nullable = false)
-    private int estoqueMinimo;
+    private BigDecimal estoqueMinimo;
 
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
@@ -99,11 +99,11 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    public int getEstoqueMinimo() {
+    public BigDecimal getEstoqueMinimo() {
         return estoqueMinimo;
     }
 
-    public void setEstoqueMinimo(int estoqueMinimo) {
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
     }
 

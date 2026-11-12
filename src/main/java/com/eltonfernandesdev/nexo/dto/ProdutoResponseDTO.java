@@ -17,7 +17,7 @@ public class ProdutoResponseDTO {
     private BigDecimal precoCusto;
     private BigDecimal precoVenda;
     private BigDecimal estoque;
-    private int estoqueMinimo;
+    private BigDecimal estoqueMinimo;
     private boolean ativo;
     private Long idCategoria;
     private List<Long> fornecedores;
@@ -54,11 +54,11 @@ public class ProdutoResponseDTO {
         this.ativo = ativo;
     }
 
-    public int getEstoqueMinimo() {
+    public BigDecimal getEstoqueMinimo() {
         return estoqueMinimo;
     }
 
-    public void setEstoqueMinimo(int estoqueMinimo) {
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
     }
 
