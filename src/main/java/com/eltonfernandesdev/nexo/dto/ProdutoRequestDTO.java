@@ -30,7 +30,7 @@ public class ProdutoRequestDTO {
 
     @NotNull(message = "O estoque é obrigatório")
     @Positive
-    private int estoque;
+    private BigDecimal estoque;
 
     @NotNull(message = "O estoque mínimo é obrigatório")
     @Positive
@@ -76,11 +76,11 @@ public class ProdutoRequestDTO {
         this.precoVenda = precoVenda;
     }
 
-    public int getEstoque() {
+    public BigDecimal getEstoque() {
         return estoque;
     }
 
-    public void setEstoque(int estoque) {
+    public void setEstoque(BigDecimal estoque) {
         this.estoque = estoque;
     }
 

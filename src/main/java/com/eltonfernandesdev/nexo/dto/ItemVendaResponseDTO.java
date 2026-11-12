@@ -11,7 +11,7 @@ public class ItemVendaResponseDTO {
 
     private BigDecimal precoUnitario;
     private BigDecimal subtotal;
-    private int quantidade;
+    private BigDecimal quantidade;
     private Long idVenda;
     private Long idProduto;
 
@@ -32,11 +32,11 @@ public class ItemVendaResponseDTO {
         this.subtotal = subtotal;
     }
 
-    public int getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 

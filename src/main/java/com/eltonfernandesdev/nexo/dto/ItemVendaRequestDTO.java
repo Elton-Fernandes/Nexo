@@ -14,18 +14,18 @@ public class ItemVendaRequestDTO {
 
     @NotNull(message = "A quantidade é obrigatório")
     @Positive(message = "A quantidade não pode ser negativa")
-    private int quantidade;
+    private BigDecimal quantidade;
 
     @NotNull
     @Positive
     private Long idProduto;
     
 
-    public int getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 

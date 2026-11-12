@@ -11,10 +11,10 @@ CREATE TABLE Produto
     nome VARCHAR(255) NOT NULL,
     preco_custo NUMERIC(10, 2) NOT NULL,
     preco_venda NUMERIC(10, 2) NOT NULL,
-    estoque INT NOT NULL,
+    estoque NUMERIC(10, 2) NOT NULL,
     descricao TEXT NOT NULL,
     ativo BOOLEAN NOT NULL,
-    estoque_minimo INT NOT NULL
+    estoque_minimo NUMERIC(10, 2) NOT NULL
 );
 
 CREATE TABLE Fornecedor

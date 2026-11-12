@@ -20,7 +20,7 @@ public class ItemVenda {
     private BigDecimal subtotal;
 
     @Column(name = "quantidade", nullable = false)
-    private int quantidade;
+    private BigDecimal quantidade;
 
     @ManyToOne
     @JoinColumn(name = "id_venda")
@@ -54,11 +54,11 @@ public class ItemVenda {
         this.subtotal = subtotal;
     }
 
-    public int getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 

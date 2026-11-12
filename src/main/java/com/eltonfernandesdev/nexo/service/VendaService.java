@@ -54,7 +54,7 @@ public class VendaService {
             Produto produto = produtoRepository.findById(itemDTO.getIdProduto())
                     .orElseThrow(()-> new ResourceNotFoundException("Esse produto não existe"));
 
-            if (produto.getEstoque() < itemDTO.getQuantidade()) {
+            if (produto.getEstoque().compareTo(itemDTO.getQuantidade()) < 0) {
                 throw new BusinessException("Estoque insuficiente");
             }
 
@@ -66,13 +66,13 @@ public class VendaService {
             item.setPrecoUnitario(produto.getPrecoVenda());
 
             BigDecimal subtotal = produto.getPrecoVenda()
-                    .multiply(BigDecimal.valueOf(itemDTO.getQuantidade()));
+                    .multiply(itemDTO.getQuantidade());
 
             item.setSubtotal(subtotal);
 
             itensVenda.add(item);
 
-            int novoEstoque = produto.getEstoque() - item.getQuantidade();
+            BigDecimal novoEstoque = produto.getEstoque().subtract(item.getQuantidade());
             produto.setEstoque(novoEstoque);
         }
 
