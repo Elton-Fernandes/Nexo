@@ -11,10 +11,8 @@ CREATE TABLE Produto
     nome VARCHAR(255) NOT NULL,
     preco_custo NUMERIC(10, 2) NOT NULL,
     preco_venda NUMERIC(10, 2) NOT NULL,
-    estoque NUMERIC(10, 2) NOT NULL,
     descricao TEXT NOT NULL,
     ativo BOOLEAN NOT NULL,
-    estoque_minimo NUMERIC(10, 2) NOT NULL
 );
 
 CREATE TABLE Fornecedor
@@ -62,9 +60,34 @@ CREATE TABLE Item_Venda
     UNIQUE(id_venda, id_produto)
 );
 
+CREATE TABLE Estoque
+(
+    id_estoque SERIAL PRIMARY KEY,
+    id_produto INT UNIQUE,
+    estoque_atual NUMERIC(10, 2) NOT NULL,
+    estoque_minimo NUMERIC(10, 2) NOT NULL
+);
+
+CREATE TABLE Movimentacao_estoque
+(
+    id_movimentacao_estoque SERIAL PRIMARY KEY,
+    id_estoque INT NOT NULL,
+    id_venda INT,
+    quantidade INT NOT NULL,
+    motivo TEXT NOT NULL,
+    tipo VARCHAR(20) NOT NULL,
+    criado_em TIMESTAMP NOT NULL
+);
+
+
+
 ALTER TABLE Produto ADD FOREIGN KEY(id_categoria) REFERENCES Categoria (id_categoria);
 ALTER TABLE Venda ADD FOREIGN KEY(id_cliente) REFERENCES Cliente (id_cliente);
 ALTER TABLE fornece ADD FOREIGN KEY(id_fornecedor) REFERENCES Fornecedor (id_fornecedor);
 ALTER TABLE fornece ADD FOREIGN KEY(id_produto) REFERENCES Produto (id_produto);
 ALTER TABLE Item_Venda ADD FOREIGN KEY(id_venda) REFERENCES Venda (id_venda);
 ALTER TABLE Item_Venda ADD FOREIGN KEY(id_produto) REFERENCES Produto (id_produto);
+ALTER TABLE Estoque ADD FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
+ALTER TABLE Movimentacao_estoque ADD FOREIGN KEY(id_estoque) REFERENCES Estoque(id_estoque);
+ALTER TABLE Movimentacao_estoque ADD FOREIGN KEY(id_venda) REFERENCES Venda(id_venda);
+ALTER TABLE Movimentacao_estoque ADD CONSTRAINT ck_movimentacao_tipo CHECK ( tipo in ('ENTRADA', 'SAIDA', 'AJUSTE', 'DEVOLUCAO'));
