@@ -12,7 +12,7 @@ CREATE TABLE Produto
     preco_custo NUMERIC(10, 2) NOT NULL,
     preco_venda NUMERIC(10, 2) NOT NULL,
     descricao TEXT NOT NULL,
-    ativo BOOLEAN NOT NULL,
+    ativo BOOLEAN NOT NULL
 );
 
 CREATE TABLE Fornecedor
@@ -21,7 +21,7 @@ CREATE TABLE Fornecedor
     nome VARCHAR(255) NOT NULL,
     telefone VARCHAR(13) NOT NULL,
     cnpj VARCHAR(14) UNIQUE NOT NULL,
-    email VARCHAR(50) NOT NULL
+    email VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Venda
@@ -36,7 +36,7 @@ CREATE TABLE Venda
 CREATE TABLE Cliente
 (
     id_cliente SERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) UNIQUE,
     telefone VARCHAR(13)
 );
@@ -63,7 +63,7 @@ CREATE TABLE Item_Venda
 CREATE TABLE Estoque
 (
     id_estoque SERIAL PRIMARY KEY,
-    id_produto INT UNIQUE,
+    id_produto INT UNIQUE NOT NULL,
     estoque_atual NUMERIC(10, 2) NOT NULL,
     estoque_minimo NUMERIC(10, 2) NOT NULL
 );
@@ -74,7 +74,7 @@ CREATE TABLE Movimentacao_estoque
     id_estoque INT NOT NULL,
     id_venda INT,
     quantidade INT NOT NULL,
-    motivo TEXT NOT NULL,
+    motivo TEXT,
     tipo VARCHAR(20) NOT NULL,
     criado_em TIMESTAMP NOT NULL
 );
@@ -91,3 +91,7 @@ ALTER TABLE Estoque ADD FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 ALTER TABLE Movimentacao_estoque ADD FOREIGN KEY(id_estoque) REFERENCES Estoque(id_estoque);
 ALTER TABLE Movimentacao_estoque ADD FOREIGN KEY(id_venda) REFERENCES Venda(id_venda);
 ALTER TABLE Movimentacao_estoque ADD CONSTRAINT ck_movimentacao_tipo CHECK ( tipo in ('ENTRADA', 'SAIDA', 'AJUSTE', 'DEVOLUCAO'));
+ALTER TABLE Movimentacao_estoque ADD CONSTRAINT ck_movimentacao_quantidade CHECK (
+    (tipo IN ('ENTRADA', 'DEVOLUCAO') AND quantidade > 0)
+        OR (tipo = 'SAIDA' AND quantidade < 0)
+        OR (tipo = 'AJUSTE' AND quantidade <> 0));
